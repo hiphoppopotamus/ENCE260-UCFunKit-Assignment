@@ -1,6 +1,6 @@
 # File:   Makefile
-# Author: EW, UCECE
-# Date:   12 Sep 2010
+# Author: Euan Widjaja, Cam Maslin, UCECE
+# Date:   05 October 2019
 # Descr:  Makefile for game
 
 # Definitions.
@@ -58,9 +58,15 @@ usart1.o: ../../drivers/avr/usart1.c ../../drivers/avr/system.h ../../drivers/av
 prescale.o: ../../drivers/avr/prescale.c ../../drivers/avr/prescale.h ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
+button.o: ../../drivers/button.c ../../drivers/button.h ../../drivers/avr/pio.h ../../drivers/avr/system.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+led.o: ../../drivers/led.c ../../drivers/led.h ../../drivers/avr/pio.h ../../drivers/avr/system.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o pio.o timer.o timer0.o ledmat.o pacer.o font.o tinygl.o display.o navswitch.o ir_uart.o usart1.o prescale.o
+game.out: game.o system.o pio.o timer.o timer0.o ledmat.o pacer.o font.o tinygl.o display.o navswitch.o ir_uart.o usart1.o prescale.o button.o led.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
@@ -76,4 +82,3 @@ clean:
 program: game.out
 	$(OBJCOPY) -O ihex game.out game.hex
 	dfu-programmer atmega32u2 erase; dfu-programmer atmega32u2 flash game.hex; dfu-programmer atmega32u2 start
-
