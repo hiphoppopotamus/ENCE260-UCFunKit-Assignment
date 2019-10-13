@@ -1,9 +1,3 @@
-#include "system.h"
-#include "pacer.h"
-#include "ledmat.h"
-#include "navswitch.h"
-
-
 int winner(char ownSelection, char otherSelection)
 {
     if (ownSlection == 'R') {
