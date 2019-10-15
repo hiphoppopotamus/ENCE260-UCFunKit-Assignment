@@ -1,3 +1,12 @@
+/** @file   game.c
+    @author Euan Widaja, Cam Maslin
+    @date   9 October 2019
+    @brief  A simple rock, paper, scissors game with a maximum of
+            10 rounds and a score board.
+
+    @defgroup game A simple rock, paper, scissors game .
+*/
+
 #include "system.h"
 #include "pacer.h"
 #include "ledmat.h"
@@ -31,28 +40,40 @@ typedef enum {
     STATE_START
 } state_t;
 
+/**
+ * Initialises the fun kit's key functionalities:
+ * system, button, navswitch, ir_uart, ledmat, tinygl, pacer, and led.
+ * led_set (LED1, 0) is called to turn led off,
+ * as initialising led turns it on by default.
+ */
 void initialise (void)
 {
     system_init ();
-    led_init ();
-    led_set (LED1, 0);
     button_init ();
     navswitch_init ();
     ir_uart_init ();
     ledmat_init ();
     tinygl_init (PACER_RATE);
     pacer_init (PACER_RATE);
+    led_init ();
+    led_set (LED1, 0);
 }
 
+/**
+ * A method that updates tinygl, navswitch, button,
+ * and calls pacer_wait().
+ */
 void io_update (void)
 {
     pacer_wait ();
     tinygl_update ();
     navswitch_update ();
     button_update ();
-
 }
 
+/**
+ * Called to set winner somehttign
+ */
 int winner(char outgoingCharacter, char incomingCharacter)
 {
     int result = 0;
@@ -84,6 +105,11 @@ int winner(char outgoingCharacter, char incomingCharacter)
     return result;
 }
 
+/**
+ * Sets a char ROCK, PAPER or SCISSORS; its symbols defined above,
+ * when navswitch is pushed north or south.
+ * Returns the char to be set.
+ */
 char set_character (char character, bool sent)
 {
     if (navswitch_push_event_p(NAVSWITCH_NORTH) && sent == false) {
@@ -108,6 +134,11 @@ char set_character (char character, bool sent)
     return character;
 }
 
+/**
+ * Displays a score bar utilising the ledmat module.
+ * Takes a char score as a parameter to indicate
+ * the score bar.
+ */
 void display_score_ledmat (char score)
 {
     switch (score) {
@@ -139,9 +170,39 @@ void display_score_ledmat (char score)
     }
 }
 
+/**
+ * Displays each round of the game, with a maximum of 10 rounds.
+ * Takes an int round as a parameter, and is called each time
+ * before the start of a round.
+ */
 void display_round (int round)
 {
+/*
+
+    char buffer[9];
+    int cx;
+
+    cx = snprintf(buffer, 9, "ROUND-");
+    sprintf(buffer+cx, 9-cx, round_buff);
+
+    tinygl_text (buffer);
+
+*/
+/*
+
+    char buffa[2];
+    buffa[0] = round;
+    buffa[1] = '\0';
+
+    char buffer[8];
+    strcpy (buffer, "ROUND-");
+    strcat (buffer, buffa);
+
+    tinygl_text (buffer);
+
+*/
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
+
     switch (round) {
     case 1:
         tinygl_text("ROUND-1");
@@ -174,6 +235,7 @@ void display_round (int round)
         tinygl_text("ROUND-10");
         break;
     }
+
     while (1) {
         io_update();
         if (navswitch_push_event_p(NAVSWITCH_PUSH)) {
@@ -183,7 +245,12 @@ void display_round (int round)
     }
 }
 
-
+/**
+ * Key function that starts game.
+ *
+ *
+ *
+ */
 void start_game (void)
 {
 
@@ -244,6 +311,9 @@ void start_game (void)
     display_results_screen (score, opponent_score, round);
 }
 
+/**
+ * Displays the current score that current player has.
+ */
 void display_score (int score)
 {
     while (1) {
@@ -256,6 +326,14 @@ void display_score (int score)
 }
 
 //FROM LAB FOR this function was written by some shit or modified by me to do shit
+/**
+ * Takes a char character, creates a char array,
+ * and inserts the character in.
+ * Then displays the string with tinygl_text.
+ *
+ * Function derived from 'lab3-ex2.c',
+ * written by the ENCE260 team.
+ */
 void display_character (char character)
 {
     char buffer[2];
@@ -264,13 +342,19 @@ void display_character (char character)
     tinygl_text (buffer);
 }
 
+/**
+ * Displays the game's title screen
+ * using the tinygl module and a predefined font
+ * 'fontPSRSideways' that includes symbols for
+ * a rock, paper, and scissors.
+ */
 void display_title (void)
 {
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     tinygl_text_dir_set (TINYGL_TEXT_DIR_ROTATE);
     tinygl_font_set(&fontPSRSideways);
     tinygl_text_speed_set(MESSAGE_RATE);
-    tinygl_text("*ROCK@*PAPER#*SCISSORS$*");
+    tinygl_text("*ROCK@PAPER#SCISSORS$*");
     while (1) {
         io_update();
         if (button_push_event_p (0)) {
@@ -280,16 +364,26 @@ void display_title (void)
     }
 }
 
+/**
+ * Takes an int score that indicates the player's score,
+ * an int opponent_score that indicates the opponent's score,
+ * an int round that indicates the game's round.
+ *
+ * Displays the appropriate, overall results screen for the game:
+ * If player's score is 5, then player wins.
+ * If opponent's score is 5, opponent wints.
+ * If round limit has exceeded (round = 10), then nobody wins.
+ */
 void display_results_screen (int score, int opponent_score, int round)
 {
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
-    if (score == '5') {
-        tinygl_text("YOU WIN @#$");
-    } else if (opponent_score == '5') {
-        tinygl_text("YOU SUCK AT @#$");
-    } else if (round > 10) {
+    if (score < opponent_score) {
+        tinygl_text("@YOU#LOSER$");
+    } else if (score > opponent_score) {
+        tinygl_text("@YOU#WINNER$");
+    } else if (score == opponent_score) {
         tinygl_text_speed_set(30);
-        tinygl_text("MAX ROUND REACHED, Y'ALL LOST");
+        tinygl_text("$IT'S A DRAW$");
     }
 
     while (1) {
@@ -301,6 +395,9 @@ void display_results_screen (int score, int opponent_score, int round)
     }
 }
 
+/**
+ * Main function for the "ROCK, PAPER, SCISSORS" game.
+ */
 int main (void)
 {
     initialise();
