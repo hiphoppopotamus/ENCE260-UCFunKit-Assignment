@@ -1,3 +1,11 @@
+/** GROUP 307 ewi45 cjm356
+    @file   io_init_update.c
+    @author Euan Widaja, Cam Maslin
+    @date   16 October 2019
+    @brief  Initialises and updates all inputs and outputs for the program.
+*/
+
+
 #include "io_init_update.h"
 
 /**
