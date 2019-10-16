@@ -1,4 +1,5 @@
-/** @file   game.c
+/** GROUP 307 ewi45 cjm356
+    @file   game.c
     @author Euan Widaja, Cam Maslin
     @date   9 October 2019
     @brief  A simple rock, paper, scissors game with a maximum of
