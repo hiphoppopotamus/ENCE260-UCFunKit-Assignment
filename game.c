@@ -2,7 +2,7 @@
     @author Euan Widaja, Cam Maslin
     @date   9 October 2019
     @brief  A simple rock, paper, scissors game with a maximum of
-            10 rounds and a score board.
+            9 rounds and a score board.
 
     @defgroup game A simple rock, paper, scissors game .
 */
@@ -11,8 +11,6 @@
 #include "pacer.h"
 #include "ledmat.h"
 #include "tinygl.h"
-#include "../fonts/font5x7_1.h"
-#include "fonts/fontPSR.h"
 #include "fonts/fontPSRSideways.h"
 #include "navswitch.h"
 #include "ir_uart.h"
@@ -22,6 +20,8 @@
 #include <string.h>
 #include "button.h"
 #include "led.h"
+
+#include "io_init_update.h"
 
 #define LOOP_RATE 300
 #define MESSAGE_RATE 20
@@ -33,7 +33,7 @@
 
 void display_character (char character);
 void display_score (int score);
-void display_results_screen (int score, int opponent_score, int round);
+void display_results_screen (int score, int opponent_score);
 
 typedef enum {
     STATE_TITLE,
@@ -41,38 +41,8 @@ typedef enum {
 } state_t;
 
 /**
- * Initialises the fun kit's key functionalities:
- * system, button, navswitch, ir_uart, ledmat, tinygl, pacer, and led.
- * led_set (LED1, 0) is called to turn led off,
- * as initialising led turns it on by default.
- */
-void initialise (void)
-{
-    system_init ();
-    button_init ();
-    navswitch_init ();
-    ir_uart_init ();
-    ledmat_init ();
-    tinygl_init (PACER_RATE);
-    pacer_init (PACER_RATE);
-    led_init ();
-    led_set (LED1, 0);
-}
-
-/**
- * A method that updates tinygl, navswitch, button,
- * and calls pacer_wait().
- */
-void io_update (void)
-{
-    pacer_wait ();
-    tinygl_update ();
-    navswitch_update ();
-    button_update ();
-}
-
-/**
- * Called to set winner somehttign
+ * Called to set winner of game.
+ * Returns an int result that determines the winner of the game.
  */
 int winner(char outgoingCharacter, char incomingCharacter)
 {
@@ -143,98 +113,51 @@ void display_score_ledmat (char score)
 {
     switch (score) {
     case '1':
-        ledmat_display_column (0x01, 4);
+        tinygl_pixel_set(tinygl_point(4, 0), 1);
         break;
     case '2':
-        ledmat_display_column (0x01, 4);
-        ledmat_display_column (0x01, 3);
+        tinygl_pixel_set(tinygl_point(4, 0), 1);
+        tinygl_pixel_set(tinygl_point(3, 0), 1);
         break;
     case '3':
-        ledmat_display_column (0x01, 4);
-        ledmat_display_column (0x01, 3);
-        ledmat_display_column (0x01, 2);
+        tinygl_pixel_set(tinygl_point(4, 0), 1);
+        tinygl_pixel_set(tinygl_point(3, 0), 1);
+        tinygl_pixel_set(tinygl_point(2, 0), 1);
         break;
     case '4':
-        ledmat_display_column (0x01, 4);
-        ledmat_display_column (0x01, 3);
-        ledmat_display_column (0x01, 2);
-        ledmat_display_column (0x01, 1);
+        tinygl_pixel_set(tinygl_point(4, 0), 1);
+        tinygl_pixel_set(tinygl_point(3, 0), 1);
+        tinygl_pixel_set(tinygl_point(2, 0), 1);
+        tinygl_pixel_set(tinygl_point(1, 0), 1);
         break;
     case '5':
-        ledmat_display_column (0x01, 4);
-        ledmat_display_column (0x01, 3);
-        ledmat_display_column (0x01, 2);
-        ledmat_display_column (0x01, 1);
-        ledmat_display_column (0x01, 0);
+        tinygl_pixel_set(tinygl_point(4, 0), 1);
+        tinygl_pixel_set(tinygl_point(3, 0), 1);
+        tinygl_pixel_set(tinygl_point(2, 0), 1);
+        tinygl_pixel_set(tinygl_point(1, 0), 1);
+        tinygl_pixel_set(tinygl_point(0, 0), 1);
         break;
     }
 }
 
 /**
- * Displays each round of the game, with a maximum of 10 rounds.
+ * Displays each round of the game, with a maximum of 9 rounds.
  * Takes an int round as a parameter, and is called each time
  * before the start of a round.
  */
 void display_round (int round)
 {
-/*
-
-    char buffer[9];
-    int cx;
-
-    cx = snprintf(buffer, 9, "ROUND-");
-    sprintf(buffer+cx, 9-cx, round_buff);
-
-    tinygl_text (buffer);
-
-*/
-/*
-
-    char buffa[2];
-    buffa[0] = round;
-    buffa[1] = '\0';
+    char round_buff[2];
+    round_buff[0] = round + '0';
+    round_buff[1] = '\0';
 
     char buffer[8];
     strcpy (buffer, "ROUND-");
-    strcat (buffer, buffa);
+    strcat (buffer, round_buff);
 
+    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     tinygl_text (buffer);
 
-*/
-    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
-
-    switch (round) {
-    case 1:
-        tinygl_text("ROUND-1");
-        break;
-    case 2:
-        tinygl_text("ROUND-2");
-        break;
-    case 3:
-        tinygl_text("ROUND-3");
-        break;
-    case 4:
-        tinygl_text("ROUND-4");
-        break;
-    case 5:
-        tinygl_text("ROUND-5");
-        break;
-    case 6:
-        tinygl_text("ROUND-6");
-        break;
-    case 7:
-        tinygl_text("ROUND-7");
-        break;
-    case 8:
-        tinygl_text("ROUND-8");
-        break;
-    case 9:
-        tinygl_text("ROUND-9");
-        break;
-    case 10:
-        tinygl_text("ROUND-10");
-        break;
-    }
 
     while (1) {
         io_update();
@@ -247,9 +170,6 @@ void display_round (int round)
 
 /**
  * Key function that starts game.
- *
- *
- *
  */
 void start_game (void)
 {
@@ -271,7 +191,7 @@ void start_game (void)
     //ledmat_display_column (0x00, 0);
     char incomingCharacter = ROCK;
 
-    while (score != '5' && opponent_score != '5' && round < 11) {
+    while (score != '6' && opponent_score != '6' && round < 10) {
         io_update ();
         display_round (round);
         tinygl_text_mode_set(TINYGL_TEXT_MODE_STEP);
@@ -293,6 +213,7 @@ void start_game (void)
                 }
             }
             if (received == true && sent == true) {
+                tinygl_clear();
                 led_set (LED1, 0);
                 won = winner(character, incomingCharacter);
                 if (won == 1) {
@@ -308,7 +229,7 @@ void start_game (void)
             }
         }
     }
-    display_results_screen (score, opponent_score, round);
+    display_results_screen (score, opponent_score);
 }
 
 /**
@@ -367,14 +288,13 @@ void display_title (void)
 /**
  * Takes an int score that indicates the player's score,
  * an int opponent_score that indicates the opponent's score,
- * an int round that indicates the game's round.
  *
  * Displays the appropriate, overall results screen for the game:
- * If player's score is 5, then player wins.
- * If opponent's score is 5, opponent wints.
- * If round limit has exceeded (round = 10), then nobody wins.
+ * If player's score is greater than opponent's, then player wins.
+ * If opponent's score is greater than player's, opponent wins.
+ * If the player's and the opponent's scores are equal, nobody wins.
  */
-void display_results_screen (int score, int opponent_score, int round)
+void display_results_screen (int score, int opponent_score)
 {
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     if (score < opponent_score) {
@@ -400,7 +320,7 @@ void display_results_screen (int score, int opponent_score, int round)
  */
 int main (void)
 {
-    initialise();
+    io_initialise();
     state_t state = STATE_TITLE;
     while (1) {
         io_update();
