@@ -1,3 +1,13 @@
+/** GROUP 307 ewi45 cjm356
+    @file   start.c
+    @author Euan Widaja, Cam Maslin
+    @date   16 October 2019
+    @brief  Function that starts each round when the navswitch is pressed down.
+    Also runs through each round until both players have selected an option and
+    updates and displays the scoreboard depending on the outcome of that round.
+*/
+
+
 #include "start.h"
 
 /**
