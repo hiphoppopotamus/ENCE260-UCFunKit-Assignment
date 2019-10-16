@@ -1,7 +1,5 @@
 Game: PAPER SCISSORS ROCK
-
 Author: Euan Widjaja, Cam Maslin
-
 Date: 16 October 2019
 
 
