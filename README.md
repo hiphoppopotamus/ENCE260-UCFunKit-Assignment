@@ -21,4 +21,4 @@ During each round, the player's own score is displayed in the right hand column 
 The game ends after one player scores 6 points or after the 9th round.
 The LED matrix will then display the result message for each player. These are either "You Win", "You Lose", or "Its a Draw". 
 
-After the game, pushing the button above the LED matrix will reset the game back to the original state when the fun kit is turned on.
+After the game, pushing the button above the LED matrix will reset the game back to the original state of the fun kit when turned on.
