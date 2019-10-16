@@ -1,3 +1,12 @@
+/** GROUP 307 ewi45 cjm356
+    @file   set.c
+    @author Euan Widaja, Cam Maslin
+    @date   16 October 2019
+    @brief  Functions to change the user options during each round and includes
+    a function to decide the winner of each round.
+*/
+
+
 #include "set.h"
 
 /**
@@ -32,7 +41,8 @@ char set_character (char character, bool sent)
 
 /**
  * Called to set winner of game.
- * Returns an int result that determines the winner of the game.
+ * Returns an int result that determines the winner of the round.
+ * 0 if its a draw, 1 if you win and 2 if the other player wins.
  */
 int set_winner(char outgoingCharacter, char incomingCharacter)
 {
