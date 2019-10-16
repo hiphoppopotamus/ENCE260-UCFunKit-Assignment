@@ -109,7 +109,7 @@ char set_character (char character, bool sent)
  * Takes a char score as a parameter to indicate
  * the score bar.
  */
-void display_score_ledmat (char score)
+void display_score_pixel (char score)
 {
     switch (score) {
     case '1':
@@ -184,11 +184,6 @@ void start_game (void)
     bool received = false;
 
     char character = ROCK;
-    //ledmat_display_column (0x7c, 4);
-    //ledmat_display_column (0x7c, 3);
-    //ledmat_display_column (0x7c, 2);
-    //ledmat_display_column (0x38, 1);
-    //ledmat_display_column (0x00, 0);
     char incomingCharacter = ROCK;
 
     while (score != '6' && opponent_score != '6' && round < 10) {
@@ -199,7 +194,7 @@ void start_game (void)
             io_update ();
             character = set_character(character, sent);
             display_character (character);
-            display_score_ledmat (score);
+            display_score_pixel (score);
             if (navswitch_push_event_p(NAVSWITCH_PUSH)) {
                 ir_uart_putc(character);
                 sent = true;
