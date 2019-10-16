@@ -1,6 +1,9 @@
 Game: PAPER SCISSORS ROCK
+
 Author: Euan Widjaja, Cam Maslin
+
 Date: 16 October 2019
+
 
 
 The game is Paper, Scissors, Rock.
