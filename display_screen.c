@@ -8,6 +8,7 @@
 
 #include "display_screen.h"
 
+
 /**
  * Displays the game's title screen
  * using the tinygl module and a predefined font
@@ -30,6 +31,7 @@ void display_title (void)
     }
 }
 
+
 /**
  * Takes a char character, creates a char array,
  * and inserts the character in.
@@ -45,7 +47,6 @@ void display_character (char character)
     buffer[1] = '\0';
     tinygl_text (buffer);
 }
-
 
 
 /**
