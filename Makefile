@@ -16,7 +16,7 @@ all: game.out
 
 
 # Compile: create object files from C source files.
-game.o: game.c ../../drivers/avr/system.h io_init_update.h ../../drivers/avr/pio.h ../../drivers/avr/timer.h ../../drivers/avr/timer0.h ../../drivers/ledmat.h ../../utils/pacer.h ../../utils/font.h ../../utils/tinygl.h ../../drivers/display.h ../../drivers/navswitch.h ../../drivers/avr/ir_uart.h ../../drivers/avr/usart1.h ../../drivers/avr/prescale.h ../../drivers/button.h ../../drivers/led.h
+game.o: game.c io_init_update.h display_screen.h set.h start.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
@@ -67,9 +67,17 @@ led.o: ../../drivers/led.c ../../drivers/led.h ../../drivers/avr/pio.h ../../dri
 io_init_update.o: io_init_update.c ../../utils/pacer.h ../../utils/tinygl.h ../../drivers/navswitch.h ../../drivers/button.h io_init_update.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
+display_screen.o: display_screen.c ../../utils/tinygl.h ../../drivers/navswitch.h ../../drivers/button.h io_init_update.h display_screen.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+set.o: set.c ../../drivers/navswitch.h set.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+start.o: start.c io_init_update.h display_screen.h set.h ../../utils/tinygl.h ../../drivers/navswitch.h ../../drivers/avr/ir_uart.h ../../drivers/led.h
+	$(CC) -c $(CFLAGS) $< -o $@
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o pio.o timer.o timer0.o ledmat.o pacer.o font.o tinygl.o display.o navswitch.o ir_uart.o usart1.o prescale.o button.o led.o io_init_update.o
+game.out: game.o system.o pio.o timer.o timer0.o ledmat.o pacer.o font.o tinygl.o display.o navswitch.o ir_uart.o usart1.o prescale.o button.o led.o io_init_update.o display_screen.o set.o start.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
