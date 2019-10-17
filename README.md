@@ -25,9 +25,9 @@ When a player chooses their selection for that round, push the navswitch down to
 
 Once a selection is sent, that player will be unable to change their selection.
 <br> Once both players have chosen their selection for that round, the winner is chosen by the following criteria:
-<br> Paper beats rock.
-<br> Rock beats scissors.
-<br> Scissors beats paper.
+<br> - Paper beats rock.
+<br> - Rock beats scissors.
+<br> - Scissors beats paper.
 
 After each round, each player's score will be displayed on their own LED matrix until the next round is started. 
 
