@@ -1,5 +1,5 @@
 /** GROUP 307 ewi45 cjm356
-    @file   display_screen.c
+    @file   display_screen.h
     @author Euan Widaja, Cam Maslin
     @date   16 October 2019
     @brief  Displays the desired images/text on the LED matrix screen.
