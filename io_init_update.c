@@ -8,6 +8,7 @@
 
 #include "io_init_update.h"
 
+
 /**
  * Initialises the fun kit's key functionalities:
  * system, button, navswitch, ir_uart, ledmat, tinygl, pacer, and led.
@@ -27,6 +28,7 @@ void io_initialise (void)
     led_set (LED1, 0);
     ledmat_init ();
 }
+
 
 /**
  * A method that updates tinygl, navswitch, button,
