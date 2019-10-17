@@ -1,10 +1,8 @@
 GROUP 307 ewi45 cjm356
 
 Game: PAPER SCISSORS ROCK
-
-Author: Euan Widjaja, Cam Maslin
-
-Date: 16 October 2019
+<br> Author: Euan Widjaja, Cam Maslin
+<br> Date: 16 October 2019
 
 # PAPER SCISSORS ROCK
 
