@@ -2,9 +2,7 @@
     @file   start.c
     @author Euan Widaja, Cam Maslin
     @date   16 October 2019
-    @brief  Function that starts each round when the navswitch is pressed down.
-    Also runs through each round until both players have selected an option and
-    updates and displays the scoreboard depending on the outcome of that round.
+    @brief  Starts game of Rock Papers Scissors
 */
 
 
@@ -13,6 +11,12 @@
 
 /**
  * Key function that starts game.
+ *
+ * Calls a function display_round () that starts each round.
+ * Runs through each round until both players have selected an option.
+ * Updates and displays the scoreboard based on the outcome of that round.
+ * Repeats the above process, until either score is 6,
+ * or round exceeds the maximum possible round (10).
  */
 void start_game (void)
 {
@@ -34,11 +38,11 @@ void start_game (void)
         tinygl_text_mode_set(TINYGL_TEXT_MODE_STEP);
         while (1) {
             io_update ();
-            character = set_character(character, sent);
+            character = set_character (character, sent);
             display_character (character);
             display_score_pixel (score);
-            if (navswitch_push_event_p(NAVSWITCH_PUSH)) {
-                ir_uart_putc(character);
+            if (navswitch_push_event_p (NAVSWITCH_PUSH)) {
+                ir_uart_putc (character);
                 sent = true;
             }
             if (ir_uart_read_ready_p()) {
