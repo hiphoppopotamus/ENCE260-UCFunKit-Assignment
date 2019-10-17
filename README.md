@@ -20,8 +20,15 @@ The plan is to fight to the death, upholding papers, scissors, and rocks as judg
 
 To start the game push the button above the matrix.
 
-Each round starts by pushing the navswitch down on both controllers. Once each round starts, each player can scroll through the options of paper, scissors or rock using the navswitch.
-When a player chooses their selection for that round, push the navswitch down to send it to the other player. When a player has recieved the other player's selection, the blue LED will turn on until they send their selection. Once a selection is sent, that player is unable to change their selection.
+Each round starts by pushing the navswitch down on both controllers. 
+
+Once each round starts, each player can scroll through the options of paper, scissors or rock using the navswitch.
+
+When a player chooses their selection for that round, push the navswitch down to send it to the other player. 
+
+When a player has recieved the other player's selection, the blue LED will turn on until they send their selection. 
+
+Once a selection is sent, that player will be unable to change their selection.
 
 Once both players have chosen their selection for that round, the winner is chosen by the following criteria:
 Paper beats rock.
