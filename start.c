@@ -10,6 +10,7 @@
 
 #include "start.h"
 
+
 /**
  * Key function that starts game.
  */
