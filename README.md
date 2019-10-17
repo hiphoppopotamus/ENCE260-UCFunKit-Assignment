@@ -30,15 +30,30 @@ When a player has recieved the other player's selection, the blue LED will turn 
 
 Once a selection is sent, that player will be unable to change their selection.
 
+
 Once both players have chosen their selection for that round, the winner is chosen by the following criteria:
+
 Paper beats rock.
+
 Rock beats scissors.
+
 Scissors beats paper.
 
-After each round, each player's score will be displayed on their own LED matrix until the next round is started. If the game is a draw, neither player's score changes. To dismiss the scoreboard, press the navswitch down.
+
+After each round, each player's score will be displayed on their own LED matrix until the next round is started. 
+
+If the game is a draw, neither player's score changes. 
+
+To dismiss the scoreboard, press the navswitch down.
+
 During each round, the player's own score is displayed in the right hand column of the LED matrix with each LED representing 1 point.
 
+
 The game ends after one player scores 6 points or after the 9th round.
-The LED matrix will then display the result message for each player. These are either "You Win", "You Lose", or "Its a Draw".
+
+The LED matrix will then display the result message for each player. 
+
+These are either "You Win", "You Lose", or "Its a Draw".
+
 
 After the game, pushing the button above the LED matrix will reset the game back to the original state of the fun kit when turned on.
