@@ -1,5 +1,5 @@
 /** GROUP 307 ewi45 cjm356
-    @file   start.c
+    @file   start.h
     @author Euan Widaja, Cam Maslin
     @date   16 October 2019
     @brief  Starts game of Rock Papers Scissors
