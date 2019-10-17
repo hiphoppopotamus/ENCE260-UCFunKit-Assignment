@@ -1,3 +1,13 @@
+/** GROUP 307 ewi45 cjm356
+    @file   io_init_update.c
+    @author Euan Widaja, Cam Maslin
+    @date   16 October 2019
+    @brief  Initialises and updates all inputs and outputs for the program.
+
+    @note   Contains functions related to io initialisation and updating.
+*/
+
+
 #ifndef IO_UPDATE_H
 #define IO_UPDATE_H
 
@@ -13,6 +23,7 @@
 #include "navswitch.h"
 #include "button.h"
 
+
 /**
  * Initialises the fun kit's key functionalities:
  * system, button, navswitch, ir_uart, ledmat, tinygl, pacer, and led.
@@ -21,10 +32,12 @@
  */
 void io_initialise (void);
 
+
 /**
  * A method that updates tinygl, navswitch, button,
- * and calls pacer_wait().
+ * and calls pacer_wait ().
  */
 void io_update (void);
+
 
 #endif
