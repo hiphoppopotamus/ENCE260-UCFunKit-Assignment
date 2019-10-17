@@ -18,9 +18,7 @@ The plan is to fight to the death, upholding papers, scissors, and rocks as judg
 
 ## GAMEPLAY
 
-To start the game push the button above the matrix.
-
-Each round starts by pushing the navswitch down on both controllers. 
+To start the game push the button above the matrix.<br>Each round starts by pushing the navswitch down on both controllers. 
 
 Once each round starts, each player can scroll through the options of paper, scissors or rock using the navswitch.
 
