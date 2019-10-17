@@ -11,6 +11,7 @@ Date: 16 October 2019
 The game is Paper, Scissors, Rock.
 
 The plan is to fight to the death, upholding 
+
 papers, scissors, and rocks as judges of our fate.
 
 "Round the decay
