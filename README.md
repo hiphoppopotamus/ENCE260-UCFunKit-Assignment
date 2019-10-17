@@ -1,12 +1,20 @@
 GROUP 307 ewi45 cjm356
 
 Game: PAPER SCISSORS ROCK
+
 Author: Euan Widjaja, Cam Maslin
+
 Date: 16 October 2019
 
 # PAPER SCISSORS ROCK
 
 The game is Paper, Scissors, Rock.
+
+The plan is to fight to the death, upholding papers, scissors, and rocks as judges of our fate.
+
+"Round the decay
+ Of that colossal Wreck, boundless and bare
+ The lone and level sands stretch far away.”
 
 ## GAMEPLAY
 
