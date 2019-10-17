@@ -53,6 +53,7 @@ void start_game (void)
                     led_set (LED1, 1);
                 }
             }
+            // Decides the winner at the end of each round and updates score
             if (received == true && sent == true) {
                 tinygl_clear();
                 led_set (LED1, 0);
