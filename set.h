@@ -1,5 +1,5 @@
 /** GROUP 307 ewi45 cjm356
-    @file   set.c
+    @file   set.h
     @author Euan Widaja, Cam Maslin
     @date   16 October 2019
     @brief  Set user options of characters to display
