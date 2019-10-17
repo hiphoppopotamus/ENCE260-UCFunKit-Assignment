@@ -1,12 +1,14 @@
+GROUP 307 ewi45 cjm356
+
 Game: PAPER SCISSORS ROCK
-
 Author: Euan Widjaja, Cam Maslin
-
 Date: 16 October 2019
 
-
+# PAPER SCISSORS ROCK
 
 The game is Paper, Scissors, Rock.
+
+## GAMEPLAY
 
 To start the game push the button above the matrix.
 
@@ -22,6 +24,6 @@ After each round, each player's score will be displayed on their own LED matrix 
 During each round, the player's own score is displayed in the right hand column of the LED matrix with each LED representing 1 point.
 
 The game ends after one player scores 6 points or after the 9th round.
-The LED matrix will then display the result message for each player. These are either "You Win", "You Lose", or "Its a Draw". 
+The LED matrix will then display the result message for each player. These are either "You Win", "You Lose", or "Its a Draw".
 
 After the game, pushing the button above the LED matrix will reset the game back to the original state of the fun kit when turned on.
