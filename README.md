@@ -33,7 +33,6 @@ After each round, each player's score will be displayed on their own LED matrix 
 <br> If the game is a draw, neither player's score changes. 
 <br> To dismiss the scoreboard, press the navswitch down.
 <br> During each round, the player's own score is displayed in the right hand column of the LED matrix with each LED representing 1 point.
-
 <br> 
 
 The game ends after one player scores 6 points or after the 9th round.
