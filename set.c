@@ -9,6 +9,7 @@
 
 #include "set.h"
 
+
 /**
  * Sets a char ROCK, PAPER or SCISSORS; its symbols defined above,
  * when navswitch is pushed north or south.
