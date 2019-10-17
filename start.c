@@ -35,7 +35,7 @@ void start_game (void)
     while (score != '6' && opponent_score != '6' && round < 10) {
         io_update ();
         display_round (round);
-        tinygl_text_mode_set(TINYGL_TEXT_MODE_STEP);
+        tinygl_text_mode_set (TINYGL_TEXT_MODE_STEP);
         while (1) {
             io_update ();
             character = set_character (character, sent);
@@ -45,8 +45,8 @@ void start_game (void)
                 ir_uart_putc (character);
                 sent = true;
             }
-            if (ir_uart_read_ready_p()) {
-                char char_buff = ir_uart_getc();
+            if (ir_uart_read_ready_p ()) {
+                char char_buff = ir_uart_getc ();
                 if (char_buff == ROCK || char_buff == PAPER || char_buff == SCISSORS) {
                     incomingCharacter = char_buff;
                     received = true;
@@ -55,15 +55,15 @@ void start_game (void)
             }
             // Decides the winner at the end of each round and updates score
             if (received == true && sent == true) {
-                tinygl_clear();
+                tinygl_clear ();
                 led_set (LED1, 0);
-                won = set_winner(character, incomingCharacter);
+                won = set_winner (character, incomingCharacter);
                 if (won == 1) {
                     score++;
                 } else if (won == 2) {
                     opponent_score++;
                 }
-                display_score(score);
+                display_score (score);
                 received = false;
                 sent = false;
                 round++;
